@@ -9,6 +9,8 @@ async function init() {
   socketService.io.attach(httpServer);
 
   httpServer.listen(port, () => console.log(`Http server started at ${port}`));
+
+  socketService.initListeners();
 }
 
 init();
