@@ -7,25 +7,30 @@ export default function Page() {
   const { sendMessage, messages } = useSocket();
   const [message, setMessage] = useState("");
 
+  const handleSendMessage = () => {
+    sendMessage(message);
+    setMessage("");
+  };
+
   return (
-    <div>
+    <div className={classes["container"]}>
       <div>
-        <input
-          onChange={(e) => setMessage(e.target.value)}
-          className={classes["chat-input"]}
-          placeholder="Message..."
-        />
-        <button
-          onClick={(e) => sendMessage(message)}
-          className={classes["button"]}
-        >
-          Send
-        </button>
-      </div>
-      <div>
-        {messages.map((e, i) => (
-          <li key={i}>{e}</li>
-        ))}
+        <div>
+          <input
+            onChange={(e) => setMessage(e.target.value)}
+            className={classes["chat-input"]}
+            placeholder="Message..."
+            value={message}
+          />
+          <button onClick={handleSendMessage} className={classes["button"]}>
+            Send
+          </button>
+        </div>
+        <div className={classes["chat-list"]}>
+          {messages.map((e, i) => (
+            <li key={i}>{e}</li>
+          ))}
+        </div>
       </div>
     </div>
   );
