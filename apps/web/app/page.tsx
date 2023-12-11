@@ -23,8 +23,8 @@ export default function Page() {
         </button>
       </div>
       <div>
-        {messages.map((e) => (
-          <li>{e}</li>
+        {messages.map((e, i) => (
+          <li key={i}>{e}</li>
         ))}
       </div>
     </div>
